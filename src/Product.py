@@ -7,7 +7,6 @@ class Product:
     def __detect_name(self):
         input_without_price = self.__input.split(" at ")[0].strip()
         input_without_price = input_without_price.split(" ")
-        input_without_price.pop(0)
         return " ".join(input_without_price)
 
     def __detect_price(self):
@@ -25,6 +24,7 @@ class Product:
         imported = self.__detect_imported()
 
         self.name = name
+        print(name)
         self.type = product_info["type"]
         self.category = product_info["category"]
         self.price = price

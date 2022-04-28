@@ -8,7 +8,7 @@ def test_new_product():
   product = Product(input)
   product.process()
 
-  assert product.name == "book"
+  assert product.name == "1 book"
   assert product.price == 12.49
   assert product.type == "entertainment"
   assert product.category == "books"
@@ -20,7 +20,7 @@ def test_product_not_imported():
   product = Product(input)
   product.process()
 
-  assert product.name == "book"
+  assert product.name == "1 book"
   assert product.price == 12.49
   assert product.imported == False
   assert product.type == "entertainment"
@@ -33,7 +33,7 @@ def test_product_imported():
   product = Product(input)
   product.process()
 
-  assert product.name == "imported bottle of perfume"
+  assert product.name == "1 imported bottle of perfume"
   assert product.price == 27.99
   assert product.imported == True
   assert product.type == "chemicals"
