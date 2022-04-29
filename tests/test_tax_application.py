@@ -1,7 +1,9 @@
 import logging
+import math
 from Product import Product
 from TaxApplicator import TaxApplicator
 log = logging.getLogger("test.tax_application")
+
 
 def test_apply_tax_to_exempt_product():
     input = "1 book at 12.49"
@@ -11,7 +13,7 @@ def test_apply_tax_to_exempt_product():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_basic_tax(product.name, product.price)
 
-    assert tax_applicator.round_up_price(tax_value) == 0
+    assert round(tax_value, 2) == 0
 
 def test_apply_tax_to_product():
     input = "1 bottle of perfume at 18.99"
@@ -21,7 +23,7 @@ def test_apply_tax_to_product():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_basic_tax(product.name, product.price)
 
-    assert tax_applicator.round_up_price(tax_value) == 1.9
+    assert round(tax_value, 2) == 1.9
 
 def test_apply_import_tax_to_product():
     input = "1 imported bottle of perfume at 27.99"
@@ -31,7 +33,7 @@ def test_apply_import_tax_to_product():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_basic_tax(product.name, product.price)
 
-    assert tax_applicator.round_up_price(tax_value) == 2.8
+    assert round(tax_value, 2) == 2.8
 
 
 def test_apply_all_taxes_exempt():
@@ -42,7 +44,7 @@ def test_apply_all_taxes_exempt():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_tax(product.name, product.price, product.imported)
 
-    assert tax_applicator.round_up_price(tax_value) == 0
+    assert tax_value == 12.49
 
 def test_apply_all_taxes_exempt_imported():
     input = "1 imported book at 12.49"
@@ -52,7 +54,7 @@ def test_apply_all_taxes_exempt_imported():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_tax(product.name, product.price, product.imported)
 
-    assert tax_applicator.round_up_price(tax_value) == 0.62
+    assert tax_value == 13.14
 
 def test_apply_all_taxes():
     input = "1 imported perfume at 12.49"
@@ -62,4 +64,4 @@ def test_apply_all_taxes():
     tax_applicator = TaxApplicator()
     tax_value = tax_applicator.apply_tax(product.name, product.price, product.imported)
 
-    assert tax_applicator.round_up_price(tax_value) == 1.94
+    assert tax_value == 14.34

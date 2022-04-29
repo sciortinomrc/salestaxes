@@ -50,6 +50,6 @@ def test_apply_import_tax_to_exempt_product():
   product.process()
 
   tax_applicator = TaxApplicator()
-  product.taxed_price = tax_applicator.apply_import_tax(product.price, product.imported)
-
-  assert tax_applicator.round_up_price(product.taxed_price) == 0.56
+  tax_value = tax_applicator.apply_import_tax(product.price, product.imported)
+  tax_value = tax_applicator.round_up_price(tax_value)
+  assert round(tax_value, 2) == 0.55
