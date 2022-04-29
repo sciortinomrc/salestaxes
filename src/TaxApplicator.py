@@ -29,6 +29,5 @@ class TaxApplicator:
         basic_taxed_price = self.apply_basic_tax(name, price)
         import_taxed_price = self.apply_import_tax(price, imported)
         taxes = self.round_up_price(basic_taxed_price + import_taxed_price)
-        print(price, taxes, price+taxes, round(price + taxes, 2) )
         return round(price + taxes, 2)
 

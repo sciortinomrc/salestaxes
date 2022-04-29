@@ -24,7 +24,6 @@ class Product:
         imported = self.__detect_imported()
 
         self.name = name
-        print(name)
         self.type = product_info["type"]
         self.category = product_info["category"]
         self.price = price
